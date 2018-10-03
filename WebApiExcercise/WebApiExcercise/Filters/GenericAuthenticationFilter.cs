@@ -29,14 +29,14 @@ namespace WebApiExcercise.Filters
             var identity = FetchAuthHeader(filterContext);
             if (identity == null)
             {
-                ChallengeAuthRequest(filterContext);
+               // ChallengeAuthRequest(filterContext);
                 return;
             }
             var genericPrincipal = new GenericPrincipal(identity, null);
             Thread.CurrentPrincipal = genericPrincipal;
             if (!OnAuthorizeUser(identity.Name, identity.Password, filterContext))
             {
-                 ChallengeAuthRequest(filterContext);
+               //  ChallengeAuthRequest(filterContext);
                 return;
             }
 

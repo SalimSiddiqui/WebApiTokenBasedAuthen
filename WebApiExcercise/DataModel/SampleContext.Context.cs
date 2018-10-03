@@ -12,6 +12,7 @@ namespace DataModel
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Collections.Generic;
     
     public partial class WebApiDbEntities : DbContext
     {
