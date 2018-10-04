@@ -26,10 +26,11 @@ namespace BusinessServices
         {
 
             
-            var productEntity = new ProductEntity();
-            var product = db.Products;
-            Mapper
-            Mapper.CreateMap<Product, ProductEntity>();
+           
+
+           var  productEntitys =    Mapper.Map<IEnumerable<ProductEntity>>(db.Products.ToList());
+
+
             //var products = _unitOfWork.ProductRepository.GetAll().ToList();
             //if (products.Any())
             //{
@@ -37,10 +38,11 @@ namespace BusinessServices
             //    var productsModel = Mapper.Map<List<Product>, List<ProductEntity>>(products);
             //    return productsModel;
             //}
-            return null;
+            // return  Mapper.Map<ProductEntity>(db.Products);
+            return productEntitys;
            // return db.Products.ToList();
-            
-            
+
+
         }
 
         public ProductEntity GetProductById(int productId)

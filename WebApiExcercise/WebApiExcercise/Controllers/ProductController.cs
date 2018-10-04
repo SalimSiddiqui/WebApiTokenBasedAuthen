@@ -15,15 +15,15 @@ namespace WebApiExcercise.Controllers
     [RoutePrefix("v1/Products/Product")]
     public class ProductController : ApiController
     {
-        [GET("allproducts")]
-        [GET("all")]
+        //[GET("allproducts")]
+        //[GET("all")]
         public HttpResponseMessage Get()
         {
             IProductServices _productServices = new ProductServices ();
             var products = _productServices.GetAllProducts();
             //var productEntities = products as List<ProductEntity> ?? products.ToList();
             //if (productEntities.Any())
-            return Request.CreateResponse(HttpStatusCode.OK, "");
+            return Request.CreateResponse(HttpStatusCode.OK, products);
            // throw new ApiDataException(1000, "Products not found", HttpStatusCode.NotFound);
         }
     }
