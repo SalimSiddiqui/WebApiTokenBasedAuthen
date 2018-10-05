@@ -25,12 +25,7 @@ namespace BusinessServices
         public IEnumerable<ProductEntity> GetAllProducts()
         {
 
-            
-           
-
-           var  productEntitys =    Mapper.Map<IEnumerable<ProductEntity>>(db.Products.ToList());
-
-
+            var productEntitys = Mapper.Map<IEnumerable<ProductEntity>>(db.Products.ToList());
             //var products = _unitOfWork.ProductRepository.GetAll().ToList();
             //if (products.Any())
             //{
@@ -40,7 +35,7 @@ namespace BusinessServices
             //}
             // return  Mapper.Map<ProductEntity>(db.Products);
             return productEntitys;
-           // return db.Products.ToList();
+            // return db.Products.ToList();
 
 
         }
@@ -55,6 +50,6 @@ namespace BusinessServices
             throw new NotImplementedException();
         }
 
-        
+
     }
 }

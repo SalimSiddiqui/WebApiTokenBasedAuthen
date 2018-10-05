@@ -15,7 +15,7 @@ namespace WebApiExcercise.Controllers
     [RoutePrefix("v1/Products/Product")]
     public class ProductController : ApiController
     {
-        //[GET("allproducts")]
+        [Route("allproducts")]
         //[GET("all")]
         public HttpResponseMessage Get()
         {
