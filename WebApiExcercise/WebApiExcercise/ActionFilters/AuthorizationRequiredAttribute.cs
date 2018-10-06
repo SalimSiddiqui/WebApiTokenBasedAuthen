@@ -4,18 +4,24 @@ using System.Linq;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
-using DataModel;
+using BusinessServices;
+using System.Net.Http;
+using System.Web.Http;
+using System.Net;
 
 namespace WebApiExcercise.ActionFilters
 {
     public class AuthorizationRequiredAttribute : ActionFilterAttribute
     {
-        WebApiDbEntities db = new WebApiDbEntities();
+        private const string Token = "Token";
+
         public override void OnActionExecuting(HttpActionContext filterContext)
         {
 
-            var provider = filterContext.ControllerContext.Configuration
-               .DependencyResolver.GetService(typeof(ITokenServices)) as ITokenServices;
+            ITokenServices provider = new TokenServices();
+
+            //var provider = filterContext.ControllerContext.Configuration
+            //   .DependencyResolver.GetService(typeof(ITokenServices)) as ITokenServices;
 
             if (filterContext.Request.Headers.Contains(Token))
             {

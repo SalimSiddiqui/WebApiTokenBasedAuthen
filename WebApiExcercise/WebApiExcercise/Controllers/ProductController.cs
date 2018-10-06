@@ -7,11 +7,11 @@ using System.Web.Http;
 using WebApiExcercise.Filters;
 using AttributeRouting.Web.Http;
 using BusinessServices;
-using BusinessEntities;
+using WebApiExcercise.ActionFilters;
 
 namespace WebApiExcercise.Controllers
 {
-    //[AuthorizationRequired]
+   [AuthorizationRequired]
     [RoutePrefix("v1/Products/Product")]
     public class ProductController : ApiController
     {

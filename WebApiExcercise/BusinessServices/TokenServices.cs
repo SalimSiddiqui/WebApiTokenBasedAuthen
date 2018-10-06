@@ -2,6 +2,8 @@
 using BusinessEntities;
 using System.Configuration;
 using DataModel;
+using System.Linq;
+using System.Data.Entity;
 
 namespace BusinessServices
 {
@@ -67,15 +69,24 @@ namespace BusinessServices
         /// <returns></returns>
         public bool ValidateToken(string tokenId)
         {
+
+         var token =   db.Tokens.Where(t => t.AuthToken.Equals(tokenId) && t.ExpiresOn > DateTime.Now).SingleOrDefault();
             //var token = _unitOfWork.TokenRepository.Get(t => t.AuthToken == tokenId && t.ExpiresOn > DateTime.Now);
-            //if (token != null && !(DateTime.Now > token.ExpiresOn))
-            //{
-            //    token.ExpiresOn = token.ExpiresOn.AddSeconds(
-            //                                  Convert.ToDouble(ConfigurationManager.AppSettings["AuthTokenExpiry"]));
-            //    _unitOfWork.TokenRepository.Update(token);
-            //    _unitOfWork.Save();
-            //    return true;
-            //}
+            if (token != null && !(DateTime.Now > token.ExpiresOn))
+           {
+                token.ExpiresOn = token.ExpiresOn.AddSeconds(
+                                             Convert.ToDouble(ConfigurationManager.AppSettings["AuthTokenExpiry"]));
+
+                db.Tokens.Attach(token);
+                db.Entry(token).State = EntityState.Modified;
+                db.SaveChanges();
+
+                //    (tokendomain);
+                //db.SaveC(token);
+                //_unitOfWork.TokenRepository.Update(token);
+                //_unitOfWork.Save();
+                return true;
+            }
             return false;
         }
 
