@@ -15,28 +15,28 @@ namespace WebApiExcercise.Filters
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class GenericAuthenticationFilter : AuthorizationFilterAttribute
     {
-        public GenericAuthenticationFilter()
-        {
-        }
-        private readonly bool _isActive = true;
-        public GenericAuthenticationFilter(bool isActive)
-        {
-            _isActive = isActive;
-        }
+        //public GenericAuthenticationFilter()
+        //{
+        //}
+        //private readonly bool _isActive = true;
+        //public GenericAuthenticationFilter(bool isActive)
+        //{
+        //    _isActive = isActive;
+        //}
         public override void OnAuthorization(HttpActionContext filterContext)
         {
-            if (!_isActive) return;
+            //if (!_isActive) return;
             var identity = FetchAuthHeader(filterContext);
             if (identity == null)
             {
-               // ChallengeAuthRequest(filterContext);
+                ChallengeAuthRequest(filterContext);
                 return;
             }
             var genericPrincipal = new GenericPrincipal(identity, null);
             Thread.CurrentPrincipal = genericPrincipal;
             if (!OnAuthorizeUser(identity.Name, identity.Password, filterContext))
             {
-               //  ChallengeAuthRequest(filterContext);
+                ChallengeAuthRequest(filterContext);
                 return;
             }
 

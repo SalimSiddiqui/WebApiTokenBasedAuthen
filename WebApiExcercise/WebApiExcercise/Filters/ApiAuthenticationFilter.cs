@@ -9,13 +9,13 @@ namespace WebApiExcercise.Filters
 {
     public class ApiAuthenticationFilter : GenericAuthenticationFilter
     {
-        public ApiAuthenticationFilter()
-        {
+        //public ApiAuthenticationFilter()
+        //{
 
-        }
-        public ApiAuthenticationFilter(bool isActive) : base(isActive)
-        {
-        }
+        //}
+        //public ApiAuthenticationFilter(bool isActive) : base(isActive)
+        //{
+        //}
 
        
         protected override bool OnAuthorizeUser(string username, string password, HttpActionContext actionContext)
